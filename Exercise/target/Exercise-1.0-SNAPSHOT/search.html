@@ -1,0 +1,85 @@
+<html lang="en">
+
+<form action="search" method="post">
+  <center>
+    <h1>Welcome to the databases</h1>
+<body>
+<style>
+  .button {
+    background-color: #FF7F50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 26px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+</style>
+class="button"
+<style>
+  .dropbtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown-content a:hover {background-color: #f1f1f1;}
+  .dropdown:hover .dropdown-content {display: block;}
+  .dropdown:hover .dropbtn {background-color: #3e8e41;}
+</style>
+</body>
+    <label for="Field">Choose one field: </label>
+    <select class="dropdown" name="Field" id="Field">
+      <optgroup label="Name">
+        <option value="firstname">FirstName</option>
+        <option value="lastname">LastName</option>
+        <option value="companyname">CompanyName</option>
+      </optgroup>
+      <optgroup label="Address">
+        <option value="address">Address</option>
+        <option value="city">City</option>
+        <option value="county">County</option>
+        <option value="state">State</option>
+        <option value="zip">Zip</option>
+      </optgroup>
+      <optgroup label="Contact">
+        <option value="phone1">Phone1</option>
+        <option value="phone2">Phone2</option>
+        <option value="email">Email</option>
+        <option value="web">Web</option>
+      </optgroup>
+    </select>
+
+    word: <input type="text" id="input" name="input" required>
+    <input type="submit" id ="" name="Submit">
+  </center>
+</form>
+</html>
