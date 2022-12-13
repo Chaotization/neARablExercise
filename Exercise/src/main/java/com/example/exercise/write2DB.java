@@ -10,17 +10,39 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+//create column on mysql
+// create table dataset.users
+// (
+//     id          int auto_increment
+//         primary key,
+//     firstname   varchar(45) null,
+//     lastname    varchar(45) null,
+//     companyname varchar(45) null,
+//     address     varchar(45) null,
+//     city        varchar(45) null,
+//     county      varchar(45) null,
+//     state       varchar(45) null,
+//     zip         varchar(45) null,
+//     phone1      varchar(45) null,
+//     phone2      varchar(45) null,
+//     email       varchar(45) null,
+//     web         varchar(45) null
+// );
+
 public class write2DB {
     private Users users;
     public void writeOnlineSourceToLocalDB() throws IOException, SQLException, ClassNotFoundException {
         URL url = new URL("https://raw.githubusercontent.com/jinchen003/Nearabl.Sample.Data/main/us-500.csv");
         Class.forName("com.mysql.jdbc.Driver");
-        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-        //create database
+        //connect to the database
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dataset", "root", "0812");
+        //conncect to the url
+        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+        //retrieve data when it received the correct response
         if (httpURLConnection.getResponseCode() == 200) {
             InputStreamReader inputStreamReader = new InputStreamReader(httpURLConnection.getInputStream());
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            //format indexs on the database
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO dataset.users" +
                     "(firstname, lastname, companyname, address, city, county, state, zip, phone1, phone2, email, web)" +
                     "Values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -29,6 +51,7 @@ public class write2DB {
             bufferedReader.readLine();
             int count = 0;
             users = new Users();
+            //save the current data received to local by specific lables
             while((content = bufferedReader.readLine()) != null){
                 String[] data = content.split(",");
                 if(data.length == 13){
@@ -58,7 +81,7 @@ public class write2DB {
                     users.setEmail(data[10]);
                     users.setWeb(data[11]);
                 }
-                //write data to databases
+                //send data to databases
                 preparedStatement.setString(1, users.getFirstname());
                 preparedStatement.setString(2, users.getLastname());
                 preparedStatement.setString(3, users.getCompanyname());
