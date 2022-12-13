@@ -71,6 +71,7 @@ public class searchServlet extends HttpServlet {
             }
             //close the database.
             String queryStr1="TRUNCATE TABLE DATASET.USERS";
+            //reset database to avoid the redundant data
             statement.executeUpdate(queryStr1);
             conn.close();
             statement.close();
