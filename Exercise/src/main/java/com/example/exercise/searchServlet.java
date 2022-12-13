@@ -13,7 +13,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
-
+//Before to proceed the program, it required tomcat to display contents and interact the input on local page
 @WebServlet(name = "searchServlet", urlPatterns = {"/search"})
 public class searchServlet extends HttpServlet {
 
